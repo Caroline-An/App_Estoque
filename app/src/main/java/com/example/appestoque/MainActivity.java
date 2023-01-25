@@ -1,14 +1,125 @@
 package com.example.appestoque;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.example.appestoque.databinding.ActivityMainBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Ana -- para login com google
+    ActivityMainBinding binding;
+    GoogleSignInClient googleSignInClient;
+    private FirebaseAuth mAuth; //NÃO SEI SE ESTOU USANDO
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        //Ana -- para login com google
+            //vinculando com o arquivo de layout
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+            //crianndo view
+        View view = binding.getRoot();
+
+        setContentView(view);
+
+            //conectando com o firebase NÃO SEI SE ESTOU USANDO
+        mAuth = FirebaseAuth.getInstance();
+
+            //objeto para opções do login com google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
+                GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("313453027242-3lvq3eqlr4h96g0rf8nc8e9ppmi7tha1.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        binding.sigingoogle.setOnClickListener(v -> {
+            signIn();
+        });
+        //
     }
+
+    //Ana -- para login com google
+    private void signIn(){
+        Intent i = googleSignInClient.getSignInIntent();
+        //startActivityForResult(i, 1);
+        abreActivity.launch(i);
+    }
+
+    ActivityResultLauncher<Intent> abreActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == Activity.RESULT_OK){
+                    Intent it = result.getData();
+
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(it);
+                    try{
+                        GoogleSignInAccount conta = task.getResult(ApiException.class);
+                        loginComGoogle(conta.getIdToken());
+                    }catch (ApiException exception){
+                        Toast.makeText(getApplicationContext(), "Nenhum usuário Google logado", Toast.LENGTH_LONG).show();
+                        //Log.d("Erro:", exception.toString());
+                    }
+                }
+            }
+    );
+
+    private void loginComGoogle(String token){
+        AuthCredential credencial = GoogleAuthProvider.getCredential(token, null);
+        mAuth.signInWithCredential(credencial).addOnCompleteListener(this, task -> {
+            if(task.isSuccessful()){
+                Toast.makeText(getApplicationContext(), "Login efetuado com sucesso", Toast.LENGTH_LONG).show();
+
+                Intent it = new Intent(MainActivity.this, tela_inicial_sem_itens.class);
+                startActivity(it);
+                finish();
+            }else{
+                Toast.makeText(getApplicationContext(), "Erro ao efetuar o login com Google", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if(requestCode == 1){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(intent);
+            try{
+                GoogleSignInAccount conta = task.getResult(ApiException.class);
+                loginComGoogle(conta.getIdToken());
+            }catch (ApiException exception){
+                Toast.makeText(getApplicationContext(), "Nenhum usuário Google logado", Toast.LENGTH_LONG).show();
+                //Log.d("Erro:", exception.toString());
+            }
+        }
+    }
+
+    //
 }

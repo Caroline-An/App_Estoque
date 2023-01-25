@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".tela_inicial_sem_itens">
+
+
+    <View
+        android:id="@+id/container_upbar"
+        style="@style/containerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="0dp"/>
+
+    <TextView
+        android:id="@+id/Organizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Organizer!"
+        android:fontFamily="@font/inknut_antiqua_medium"
+        android:textColor="@color/azul_letras"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
+    <View
+        android:id="@+id/container_TeIni_sem_itens"
+        style="@style/containerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_margin="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_upbar"
+        />
+
+    <TextView
+        android:id="@+id/nenhum_item"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Nenhum item ou categoria cadastrada ಠ_ಠ"
+        android:textColor="@color/azul_letras"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="@+id/container_TeIni_sem_itens"
+        app:layout_constraintEnd_toEndOf="@+id/container_TeIni_sem_itens"
+        app:layout_constraintTop_toTopOf="@+id/container_TeIni_sem_itens"
+        />
+
+
+    <TextView
+        android:id="@+id/clique_para_add"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="clique no botão abaixo para adicionar~(˘▾˘~)"
+        android:textColor="@color/azul_letras"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="@+id/container_TeIni_sem_itens"
+        app:layout_constraintEnd_toEndOf="@+id/container_TeIni_sem_itens"
+        app:layout_constraintTop_toBottomOf="@+id/nenhum_item"
+        />
+
+    <Button
+        android:id="@+id/button_add_prod"
+        style="@style/botao"
+        android:layout_marginTop="20dp"
+        android:text="Adicionar Produto"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/inknut_antiqua_medium"
+        app:layout_constraintTop_toBottomOf="@id/container_TeIni_sem_itens"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/container_downbar"
+        style="@style/containerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="0dp"
+        android:layout_marginTop="252dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
