@@ -13,6 +13,13 @@
         android:theme="@style/Theme.AppEstoque"
         tools:targetApi="31" >
         <activity
+            android:name=".Adicao_novos_produtos"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".tela_inicial_sem_itens"
             android:exported="false" >
             <meta-data
