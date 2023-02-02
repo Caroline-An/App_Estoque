@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     //Ana -- para login com google
     ActivityMainBinding binding;
     GoogleSignInClient googleSignInClient;
-    private FirebaseAuth mAuth; //NÃO SEI SE ESTOU USANDO
-    //
+    private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

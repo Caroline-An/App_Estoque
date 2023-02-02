@@ -68,7 +68,8 @@
         android:textColor="@color/azul_letras"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintTop_toTopOf="@id/container" />
+        app:layout_constraintTop_toTopOf="@id/container"
+        />
 
     <EditText
         android:id="@+id/edit_email"
@@ -119,7 +120,7 @@
         android:layout_marginTop="8dp"
         android:text="Ou faça login com:"
         android:textColor="@color/azul_letras"
-        android:textSize="10dp"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_entrar"/>
@@ -141,7 +142,7 @@
         android:layout_marginTop="8dp"
         android:text="Não tem uma conta ainda? Cadastre-se"
         android:textColor="@color/azul_letras"
-        android:textSize="8dp"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sigingoogle"/>
