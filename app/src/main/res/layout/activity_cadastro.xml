@@ -25,51 +25,33 @@
         android:id="@+id/container"
         style="@style/containerComponents"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="330dp"
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Organizer"/>
 
     <TextView
-        android:id="@+id/text_email_cadastro"
+        android:id="@+id/text_nome_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="E-mail:"
+        android:text="Nome de usuário:"
         android:textColor="@color/azul_letras"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/container"
         app:layout_constraintTop_toTopOf="@id/container" />
 
     <EditText
-        android:id="@+id/edit_email_cadastro"
+        android:id="@+id/edit_nome_cadastro"
         style="@style/Edit_Text"
-        android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@id/text_email_cadastro"/>
-
-    <TextView
-        android:id="@+id/text_usuario_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="Nome de usuário:"
-        android:textColor="@color/azul_letras"
-        android:textSize="16dp"
+        android:inputType="text"
+        android:hint="Usuario23"
         app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintTop_toBottomOf="@id/edit_email_cadastro"/>
-
-    <EditText
-        android:id="@+id/edit_usuario_cadastro"
-        style="@style/Edit_Text"
-        android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@id/text_usuario_cadastro"/>
+        app:layout_constraintTop_toBottomOf="@id/text_nome_cadastro"/>
 
     <TextView
         android:id="@+id/text_senha_cadastro"
@@ -81,18 +63,42 @@
         android:textColor="@color/azul_letras"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintTop_toBottomOf="@id/edit_usuario_cadastro"/>
+        app:layout_constraintTop_toBottomOf="@id/edit_nome_cadastro"/>
 
     <EditText
         android:id="@+id/edit_senha_cadastro"
         style="@style/Edit_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:hint="****"
         app:layout_constraintStart_toStartOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@id/container"
         app:layout_constraintTop_toBottomOf="@id/text_senha_cadastro"/>
 
+    <TextView
+        android:id="@+id/text_confsenha_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="Confirmação de senha:"
+        android:textColor="@color/azul_letras"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@id/edit_senha_cadastro"/>
+
+    <EditText
+        android:id="@+id/edit_confsenha_cadastro"
+        style="@style/Edit_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="****"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@id/text_confsenha_cadastro"/>
+
     <Button
-        android:id="@+id/button_entrar"
+        android:id="@+id/botao_cadastrar"
         style="@style/botao"
         android:layout_marginTop="20dp"
         android:text="   CADASTRAR   "
