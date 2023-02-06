@@ -30,58 +30,15 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"/>
 
-    <View
-        android:id="@+id/container_TeIni_sem_itens"
+    <ListView
+        android:id="@+id/lista_categorias"
         style="@style/containerComponents"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="100dp"
-        android:layout_margin="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@id/container_upbar"
-        />
-
-    <TextView
-        android:id="@+id/nenhum_item"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Nenhum item ou categoria cadastrada ಠ_ಠ"
-        android:textColor="@color/azul_letras"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:layout_margin="5dp"
-        app:layout_constraintStart_toStartOf="@+id/container_TeIni_sem_itens"
-        app:layout_constraintEnd_toEndOf="@+id/container_TeIni_sem_itens"
-        app:layout_constraintTop_toTopOf="@+id/container_TeIni_sem_itens"
-        />
-
-
-    <TextView
-        android:id="@+id/clique_para_add"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="clique no botão abaixo para adicionar~(˘▾˘~)"
-        android:textColor="@color/azul_letras"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:layout_margin="5dp"
-        app:layout_constraintStart_toStartOf="@+id/container_TeIni_sem_itens"
-        app:layout_constraintEnd_toEndOf="@+id/container_TeIni_sem_itens"
-        app:layout_constraintTop_toBottomOf="@+id/nenhum_item"
-        />
-
-    <Button
-        android:id="@+id/button_add_prod"
-        style="@style/botao"
-        android:layout_marginTop="20dp"
-        android:text="Adicionar Produto"
-        android:textSize="15dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/inknut_antiqua_medium"
-        app:layout_constraintTop_toBottomOf="@id/container_TeIni_sem_itens"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:paddingTop="10dp"/>
 
     <View
         android:id="@+id/container_downbar"
@@ -164,5 +121,4 @@
         app:layout_constraintBottom_toBottomOf="@id/container_downbar"
         android:layout_margin="0dp"
         android:padding="0dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

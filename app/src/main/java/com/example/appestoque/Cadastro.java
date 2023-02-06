@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.appestoque.dao.DBHelper;
+import com.example.appestoque.helper.DBHelper;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -40,13 +40,21 @@ public class Cadastro extends AppCompatActivity {
                     String senhaqvai = senha.getText().toString();
                     String confsenha = confirmasenha.getText().toString();
 
+                    //verifica se há algum campo vazio
                     if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(senhaqvai) || TextUtils.isEmpty(confsenha)){
                         Toast.makeText(Cadastro.this, "Existem campos em branco, por favor preencha-os", Toast.LENGTH_SHORT).show();
                     }else{
-                        if (senha.equals(senhaqvai)){
+
+                        //verifica se as senhas são iguais
+                        if (senhaqvai.equals(confsenha)){
+
+                            //verifica se o nome de usuário já existe no banco
                             Boolean veriusuario = banco.verificarUsuario(usuario);
+
+                            //se não tiver registro do nome informado, ele insere no banco
                             if (veriusuario == false){
                                 Boolean insere = banco.insereDados(usuario, senhaqvai);
+
                                 if(insere == true){
                                     Toast.makeText(Cadastro.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -65,13 +73,6 @@ public class Cadastro extends AppCompatActivity {
                 }
             });
 
-            cadastrar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent it = new Intent(Cadastro.this, tela_inicial.class);
-                    startActivity(it);
-                }
-            });
         //
     }
 }

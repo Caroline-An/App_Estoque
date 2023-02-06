@@ -11,5 +11,6 @@
     <color name="azul_letras">#2F0092</color>
     <color name="branco_transparente">#65FFFFFF</color>
     <color name="fundo_botao">#4200FF</color>
+    <color name="transparente">#00FFFFFF</color>
 
 </resources>

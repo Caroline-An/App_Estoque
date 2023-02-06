@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/azul_fundo"
     tools:context=".Adicao_novos_produtos">
 
 
@@ -48,19 +48,19 @@
         android:id="@+id/container_novo_prod"
         style="@style/containerComponents"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="510dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/novoProd"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/novoProd" />
 
     <TextView
         android:id="@+id/nomeProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome:"
+        android:fontFamily="@font/inknut_antiqua"
         android:textSize="16dp"
         android:textColor="@color/azul_letras"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
@@ -74,15 +74,14 @@
         android:inputType="text"
         android:hint="Ex.: Camisa azul"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintEnd_toEndOf="@id/container_novo_prod"
-        app:layout_constraintTop_toBottomOf="@id/nomeProd"
-        />
+        app:layout_constraintTop_toBottomOf="@id/nomeProd"/>
 
     <TextView
         android:id="@+id/descricaoProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descrição:"
+        android:fontFamily="@font/inknut_antiqua"
         android:textSize="16dp"
         android:textColor="@color/azul_letras"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
@@ -94,41 +93,20 @@
         android:id="@+id/edit_descricaoProd"
         style="@style/Edit_Text"
         android:inputType="text"
-        android:hint="Ex.: Camisa de cor azul, manga longa, com detalhes em vermelho"
+        android:hint="Ex.: Camisa de cor azul, manga longa..."
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintEnd_toEndOf="@id/container_novo_prod"
         app:layout_constraintTop_toBottomOf="@id/descricaoProd"/>
-
-    <TextView
-        android:id="@+id/qntProd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quantidade:"
-        android:textSize="16dp"
-        android:textColor="@color/azul_letras"
-        app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintTop_toBottomOf="@id/edit_descricaoProd"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/edit_qntProd"
-        style="@style/Edit_Text"
-        android:inputType="number"
-        android:hint="Ex.: 3"
-        app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintEnd_toEndOf="@id/container_novo_prod"
-        app:layout_constraintTop_toBottomOf="@id/qntProd"/>
 
     <TextView
         android:id="@+id/categoriaProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Categoria:"
+        android:fontFamily="@font/inknut_antiqua"
         android:textSize="16dp"
         android:textColor="@color/azul_letras"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintTop_toBottomOf="@id/edit_qntProd"
+        app:layout_constraintTop_toBottomOf="@id/edit_descricaoProd"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
 
@@ -138,14 +116,14 @@
         android:inputType="text"
         android:hint="Ex.: Camisas"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintEnd_toEndOf="@id/container_novo_prod"
         app:layout_constraintTop_toBottomOf="@id/categoriaProd"/>
 
     <TextView
-        android:id="@+id/valorProd"
+        android:id="@+id/qntProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valor por item:"
+        android:text="Quantidade:"
+        android:fontFamily="@font/inknut_antiqua"
         android:textSize="16dp"
         android:textColor="@color/azul_letras"
         app:layout_constraintStart_toStartOf="@id/container_novo_prod"
@@ -154,30 +132,146 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
+        android:id="@+id/edit_qntProd"
+        style="@style/Edit_Text"
+        android:inputType="number"
+        android:hint="Ex.: 3"
+        app:layout_constraintStart_toStartOf="@id/container_novo_prod"
+        app:layout_constraintTop_toBottomOf="@id/qntProd"/>
+
+    <TextView
+        android:id="@+id/valorProd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor por item:"
+        android:fontFamily="@font/inknut_antiqua"
+        android:textSize="16dp"
+        android:textColor="@color/azul_letras"
+        app:layout_constraintStart_toEndOf="@id/qntProd"
+        app:layout_constraintTop_toBottomOf="@id/edit_categoriaProd"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
         android:id="@+id/edit_valorProd"
         style="@style/Edit_Text"
         android:inputType="numberDecimal"
         android:hint="Ex.: 25,00"
-        app:layout_constraintStart_toStartOf="@id/container_novo_prod"
-        app:layout_constraintEnd_toEndOf="@id/container_novo_prod"
-        app:layout_constraintTop_toBottomOf="@id/valorProd"/>
+        app:layout_constraintStart_toEndOf="@id/qntProd"
+        app:layout_constraintTop_toBottomOf="@id/valorProd"
+        android:layout_marginStart="50dp"/>
 
     <ImageView
         android:id="@+id/iconFoto"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/cameraicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_novo_prod" />
+        app:layout_constraintTop_toBottomOf="@id/container_novo_prod"/>
 
     <Button
         android:id="@+id/botao_foto"
         style="@style/botaofoto"
         android:text="Adicionar Foto"
         app:layout_constraintStart_toEndOf="@+id/iconFoto"
-        app:layout_constraintTop_toBottomOf="@id/container_novo_prod"
+        app:layout_constraintTop_toTopOf="@id/iconFoto"
         app:layout_constraintBottom_toBottomOf="@id/iconFoto"
         android:layout_marginStart="20dp"/>
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/botao_cadastProd"
+        style="@style/botao"
+        android:text="CADASTRAR"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botao_foto"/>
+
+
+    <View
+        android:id="@+id/container_downbar"
+        style="@style/containerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="0dp"
+        android:layout_marginTop="252dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconHome"
+        style="@style/iconesbotoes"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:src="@drawable/home"
+        app:layout_constraintStart_toStartOf="@id/container_downbar"
+        app:layout_constraintEnd_toStartOf="@id/iconnovo"
+        app:layout_constraintTop_toTopOf="@id/container_downbar" />
+
+    <TextView
+        android:id="@+id/idhome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textSize="17dp"
+        android:fontFamily="@font/inknut_antiqua_light"
+        app:layout_constraintStart_toStartOf="@id/iconHome"
+        app:layout_constraintEnd_toEndOf="@id/iconHome"
+        app:layout_constraintBottom_toBottomOf="@id/container_downbar"
+        android:layout_margin="0dp"
+        android:padding="0dp"/>
+
+    <ImageView
+        android:id="@+id/iconnovo"
+        style="@style/iconesbotoes"
+        android:layout_width="110dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/caixa"
+        app:layout_constraintStart_toEndOf="@id/iconHome"
+        app:layout_constraintEnd_toStartOf="@id/iconrelatorio"
+        app:layout_constraintTop_toTopOf="@id/container_downbar"/>
+
+    <TextView
+        android:id="@+id/idnovo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Novo"
+        android:textSize="17dp"
+        android:fontFamily="@font/inknut_antiqua_light"
+        app:layout_constraintStart_toStartOf="@id/iconnovo"
+        app:layout_constraintEnd_toEndOf="@id/iconnovo"
+        app:layout_constraintBottom_toBottomOf="@id/container_downbar"
+        android:layout_margin="0dp"
+        android:padding="0dp"/>
+
+    <ImageView
+        android:id="@+id/iconrelatorio"
+        style="@style/iconesbotoes"
+        android:layout_width="110dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/livro"
+        app:layout_constraintStart_toEndOf="@id/iconnovo"
+        app:layout_constraintEnd_toEndOf="@id/container_downbar"
+        app:layout_constraintTop_toTopOf="@id/container_downbar"/>
+
+    <TextView
+        android:id="@+id/idrelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relatório"
+        android:textSize="17dp"
+        android:fontFamily="@font/inknut_antiqua_light"
+        app:layout_constraintStart_toStartOf="@id/iconrelatorio"
+        app:layout_constraintEnd_toEndOf="@id/iconrelatorio"
+        app:layout_constraintBottom_toBottomOf="@id/container_downbar"
+        android:layout_margin="0dp"
+        android:padding="0dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

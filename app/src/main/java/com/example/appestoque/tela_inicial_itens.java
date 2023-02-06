@@ -5,22 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class tela_inicial extends AppCompatActivity {
+public class tela_inicial_itens extends AppCompatActivity {
 
-    Button botaoaddprod;
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_inicial);
+        setContentView(R.layout.activity_tela_inicial_itens);
 
-        botaoaddprod = findViewById(R.id.button_add_prod);
         home = findViewById(R.id.iconHome);
         homet = findViewById(R.id.idhome);
         novo = findViewById(R.id.iconnovo);
@@ -28,18 +25,10 @@ public class tela_inicial extends AppCompatActivity {
         relatorio = findViewById(R.id.iconrelatorio);
         relatoriot = findViewById(R.id.idrelatorio);
 
-        botaoaddprod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, Adicao_novos_produtos.class);
-                startActivity(it);
-            }
-        });
-
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
                 startActivity(it);
             }
         });
@@ -47,7 +36,7 @@ public class tela_inicial extends AppCompatActivity {
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
                 startActivity(it);
             }
         });
@@ -55,7 +44,7 @@ public class tela_inicial extends AppCompatActivity {
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, Adicao_novos_produtos.class);
+                Intent it = new Intent(tela_inicial_itens.this, Adicao_novos_produtos.class);
                 startActivity(it);
             }
         });
@@ -63,7 +52,7 @@ public class tela_inicial extends AppCompatActivity {
         novot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, Adicao_novos_produtos.class);
+                Intent it = new Intent(tela_inicial_itens.this, Adicao_novos_produtos.class);
                 startActivity(it);
             }
         });
@@ -71,7 +60,7 @@ public class tela_inicial extends AppCompatActivity {
         relatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, relatorio.class);
+                Intent it = new Intent(tela_inicial_itens.this, relatorio.class);
                 startActivity(it);
             }
         });
@@ -79,10 +68,9 @@ public class tela_inicial extends AppCompatActivity {
         relatoriot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, relatorio.class);
+                Intent it = new Intent(tela_inicial_itens.this, relatorio.class);
                 startActivity(it);
             }
         });
-
     }
 }

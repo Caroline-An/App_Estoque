@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.appestoque.dao.DBHelper;
+import com.example.appestoque.helper.DBHelper;
 import com.example.appestoque.databinding.ActivityMainBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -82,15 +82,20 @@ public class MainActivity extends AppCompatActivity {
                     String usuario = nomeusuario.getText().toString();
                     String senhaa = senha.getText().toString();
 
+                    //veirifica se algum campo está vazio
                     if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(senhaa)){
                         Toast.makeText(MainActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     }else {
+                        //chama o método de verificar senha no DBHelper
                         Boolean verifiSenha = bd.verificarSenha(usuario, senhaa);
+
+                        //se os dados estiverem no banco ele retorna true, informa que efetuou o login e vai para a tela inicial
                         if (verifiSenha == true) {
                             Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
 
                             Intent it = new Intent(MainActivity.this, tela_inicial.class);
                             startActivity(it);
+
                         }else {
                             Toast.makeText(MainActivity.this, "Erro de autenticação! Tente novamente.", Toast.LENGTH_SHORT).show();
                         }
@@ -144,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent it = new Intent(MainActivity.this, tela_inicial.class);
                     startActivity(it);
-                    finish();
                 }else{
                     Toast.makeText(getApplicationContext(), "Erro ao efetuar o login com Google", Toast.LENGTH_LONG).show();
                 }

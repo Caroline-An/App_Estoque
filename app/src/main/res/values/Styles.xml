@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="containerComponents">
-
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/container_components</item>
     </style>
 
     <style name="Edit_Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="background">@drawable/edit_text</item>
         <item name="android:padding">20dp</item>
         <item name="android:maxLength">25</item>
@@ -36,5 +38,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/botaoircadastrar</item>
+    </style>
+
+    <style name="iconesbotoes">
+        <item name="backgroundColor">@color/transparente</item>
     </style>
 </resources>
