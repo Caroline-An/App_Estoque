@@ -5,13 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.appestoque.dao.Produto;
+import com.example.appestoque.helper.DAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class tela_inicial_itens extends AppCompatActivity {
 
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
+
+    ListView listacateg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,19 @@ public class tela_inicial_itens extends AppCompatActivity {
         novot = findViewById(R.id.idnovo);
         relatorio = findViewById(R.id.iconrelatorio);
         relatoriot = findViewById(R.id.idrelatorio);
+
+        listacateg = findViewById(R.id.lista_categorias);
+
+        DAO dao = new DAO(getApplicationContext());
+
+        List<Produto> produtos = dao.buscaCategoriaProduto();
+        List<String> categoria = new ArrayList<String>();
+
+        for (Produto categoriabuscada : produtos){
+            categoria.add(categoriabuscada.getCategoria());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, categoria);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override

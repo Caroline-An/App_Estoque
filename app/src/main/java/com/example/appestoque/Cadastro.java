@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.appestoque.helper.DBHelper;
+import com.example.appestoque.dao.Usuario;
+import com.example.appestoque.helper.DAO;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class Cadastro extends AppCompatActivity {
         EditText nomeusuario, senha, confirmasenha;
         Button cadastrar;
 
-        DBHelper banco;
+        DAO banco;
     //
 
     @Override
@@ -31,7 +33,7 @@ public class Cadastro extends AppCompatActivity {
             senha = findViewById(R.id.edit_senha_cadastro);
             confirmasenha = findViewById(R.id.edit_confsenha_cadastro);
             cadastrar = findViewById(R.id.botao_cadastrar);
-            banco = new DBHelper(this);
+            banco = new DAO(this);
 
             cadastrar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -53,7 +55,9 @@ public class Cadastro extends AppCompatActivity {
 
                             //se não tiver registro do nome informado, ele insere no banco
                             if (veriusuario == false){
-                                Boolean insere = banco.insereDados(usuario, senhaqvai);
+                                Boolean insere = banco.insereUser(usuario);
+
+                                Log.e("mensagem", senhaqvai+usuario);
 
                                 if(insere == true){
                                     Toast.makeText(Cadastro.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();

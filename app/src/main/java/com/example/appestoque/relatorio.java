@@ -22,8 +22,6 @@ public class relatorio extends AppCompatActivity {
 
         pdf = findViewById(R.id.botao_pdf);
 
-
-
         home = findViewById(R.id.iconHome);
         homet = findViewById(R.id.idhome);
         novo = findViewById(R.id.iconnovo);
