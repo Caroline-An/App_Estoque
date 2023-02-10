@@ -36,6 +36,8 @@ public class tela_inicial extends AppCompatActivity {
             }
         });
 
+
+        //Ana -- Botões da barra de baixo
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

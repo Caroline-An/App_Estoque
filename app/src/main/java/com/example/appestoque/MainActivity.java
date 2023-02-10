@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.appestoque.helper.DBHelper;
 import com.example.appestoque.databinding.ActivityMainBinding;
+import com.example.appestoque.helper.DAO;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
     //XXX -- para login comum
         EditText nomeusuario, senha;
         Button entrar, cadastrar;
-        DBHelper bd;
+        DAO bd;
     //
+
+    //-- para ver outras telas EXCLUIR DPS
+    Button irtelas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             senha = findViewById(R.id.edit_senha);
             entrar = findViewById(R.id.botao_entrar);
             cadastrar = findViewById(R.id.botao_cadastre_se);
-            bd = new DBHelper(this);
+            bd = new DAO(this);
 
             entrar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -113,6 +117,20 @@ public class MainActivity extends AppCompatActivity {
             });
 
         //
+
+        //VER OUTRAS TELAS EXCLUIR DEPOIS
+        irtelas = findViewById(R.id.botao_irtelas);
+
+        irtelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, tela_inicial.class);
+                startActivity(it);
+            }
+        });
+
+
+
 
     }
 
