@@ -3,16 +3,13 @@ package com.example.appestoque;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.appestoque.adapter.RecyclerViewAdapter;
@@ -27,12 +24,20 @@ public class tela_inicial_itens extends AppCompatActivity {
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
     Context context;
-    RecyclerView listacateg;
 
     //layouts dinâmicos
+    RecyclerView listacateg;
     LinearLayout linearLayout;
     RecyclerView.Adapter recyclerviewadapter;
     RecyclerView.LayoutManager recyclerviewmanager;
+    //
+
+    //aplicando redirecionamento correto para todas as funcionalidades necessárias
+    DAO banco = new DAO(this);
+    Produto produto = new Produto();
+
+    Boolean insere = banco.insereProduto(produto);
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +58,35 @@ public class tela_inicial_itens extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
-                startActivity(it);
+
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
-                startActivity(it);
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(tela_inicial_itens.this, tela_inicial_itens.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, Adicao_novos_produtos.class);
-                startActivity(it);
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(tela_inicial_itens.this, tela_inicial_itens.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 

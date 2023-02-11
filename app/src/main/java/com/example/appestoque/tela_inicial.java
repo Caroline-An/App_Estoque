@@ -9,11 +9,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.appestoque.dao.Produto;
+import com.example.appestoque.helper.DAO;
+
 public class tela_inicial extends AppCompatActivity {
 
     Button botaoaddprod;
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
+
+    //aplicando redirecionamento correto para todas as funcionalidades necessárias
+    DAO banco = new DAO(this);
+    Produto produto = new Produto();
+
+    Boolean insere = banco.insereProduto(produto);
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +51,28 @@ public class tela_inicial extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
-                startActivity(it);
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(tela_inicial.this,tela_inicial.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
-                startActivity(it);
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
