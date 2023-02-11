@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         private FirebaseAuth mAuth;
     //
 
+    DAO banco;
     //XXX -- para login comum
         EditText nomeusuario, senha;
         Button entrar, cadastrar;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         //Ana -- para login com google
             //vinculando com o arquivo de layout
             binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        banco = new DAO(this);
 
                 //crianndo view
             View view = binding.getRoot();
@@ -95,10 +98,22 @@ public class MainActivity extends AppCompatActivity {
 
                         //se os dados estiverem no banco ele retorna true, informa que efetuou o login e vai para a tela inicial
                         if (verifiSenha == true) {
-                            Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                            Intent it = new Intent(MainActivity.this, tela_inicial.class);
-                            startActivity(it);
+                            Boolean insere = banco.verificarSeHaProduto();
+
+
+                            if(insere == true){
+
+                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                                Intent it = new Intent(MainActivity.this, tela_inicial_itens.class);
+                                startActivity(it);
+                            }else {
+
+                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                                Intent it = new Intent(MainActivity.this, tela_inicial.class);
+                                startActivity(it);
+                            }
+
 
                         }else {
                             Toast.makeText(MainActivity.this, "Erro de autenticação! Tente novamente.", Toast.LENGTH_SHORT).show();

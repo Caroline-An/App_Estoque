@@ -45,7 +45,19 @@ public class DAO extends SQLiteOpenHelper {
 
     public Boolean verificarUsuario(String nomeusuario){
         SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=?", new String[] {nomeusuario});
+        if (cursor.getCount()>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Boolean verificarSeHaProduto(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM produto", null);
         if (cursor.getCount()>0){
             return true;
         }else {
