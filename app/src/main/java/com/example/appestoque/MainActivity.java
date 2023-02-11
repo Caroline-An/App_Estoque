@@ -73,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
             binding.sigingoogle.setOnClickListener(v -> {
                 signIn();
             });
-        //
-
-        //XX -- para login comum
 
             nomeusuario = findViewById(R.id.edit_nome);
             senha = findViewById(R.id.edit_senha);

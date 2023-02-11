@@ -88,9 +88,9 @@ public class Adicao_novos_produtos extends AppCompatActivity {
 
                         Boolean insere = banco.insereProduto(produto);
 
-                        Log.e("produto_dao","nome: "+produto.getNome()+" desc: "
+                        Log.e("produto","nome: "+produto.getNome()+" desc: "
                                 +produto.getDescricao()+" categ: "+produto.getCategoria()+
-                                " quanti: "+produto.getQuantidade()+" valoe: "+produto.getValor());
+                                " quanti: "+produto.getQuantidade()+" valor: "+produto.getValor());
 
                         if(insere == true){
                             Toast.makeText(Adicao_novos_produtos.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();

@@ -110,8 +110,8 @@ public class tela_inicial_itens extends AppCompatActivity {
 
         String[] dados_categoria = new String[]{};
 
-        for (Produto categoriabuscada : produtos){
-            categoria.add(categoriabuscada.getCategoria());
+        for (Produto produtoBuscado : produtos){
+            categoria.add(produtoBuscado.getCategoria());
         }
 
         dados_categoria = categoria.toArray(new String[0]);

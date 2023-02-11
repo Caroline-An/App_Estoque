@@ -30,14 +30,37 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"/>
 
+    <TextView
+        android:id="@+id/textinho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="15dp"
+        android:text="~Clique nas categorias para ver os produtos cadastrados"
+        app:layout_constraintTop_toBottomOf="@id/container_upbar"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_categorias"
         style="@style/containerComponents"
-        app:layout_constraintTop_toBottomOf="@id/container_upbar"
+        app:layout_constraintTop_toBottomOf="@id/textinho"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         android:layout_margin="10dp"
         android:paddingTop="10dp"/>
+
+    <Button
+        android:id="@+id/button_add_prod"
+        style="@style/botao"
+        android:layout_margin="20dp"
+        android:text="Adicionar Produto"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/inknut_antiqua_medium"
+        app:layout_constraintTop_toBottomOf="@id/lista_categorias"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:id="@+id/container_downbar"

@@ -44,7 +44,7 @@ public class DAO extends SQLiteOpenHelper {
     }
 
     public Boolean verificarUsuario(String nomeusuario){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=?", new String[] {nomeusuario});
         if (cursor.getCount()>0){
@@ -127,6 +127,16 @@ public class DAO extends SQLiteOpenHelper {
         }
 
         return produtos;
+    }
+
+    public void apagaProduto(String nome){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String sql = "DELETE FROM pessoa WHERE nome =  " + "'" + nome + "'";
+
+        db.execSQL(sql);
+
+
     }
 
 }
