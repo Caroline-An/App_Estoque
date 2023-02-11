@@ -21,6 +21,9 @@
             android:name=".tela_inicial_produtos"
             android:exported="false" />
         <activity
+            android:name=".Gerar_relatorio"
+            android:exported="false" />
+        <activity
             android:name=".relatorio"
             android:exported="false" />
         <activity
