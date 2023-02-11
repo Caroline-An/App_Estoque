@@ -30,10 +30,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"/>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_categorias"
         style="@style/containerComponents"
-
         app:layout_constraintTop_toBottomOf="@id/container_upbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
