@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class Adicao_novos_produtos extends AppCompatActivity {
         //talvez não use o image view
         ImageView camera;
         Button addfoto, cadprod;
-        DAO pdao;
+        DAO banco;
     //
 
     //king -- barra inferior
@@ -55,6 +56,8 @@ public class Adicao_novos_produtos extends AppCompatActivity {
             relatoriot = findViewById(R.id.idrelatorio);
         //
 
+            banco = new DAO(this);
+
         //king -- atributos do produto
             nomep = findViewById(R.id.edit_nomeProd);
             descrp = findViewById(R.id.edit_descricaoProd);
@@ -77,14 +80,27 @@ public class Adicao_novos_produtos extends AppCompatActivity {
                         DAO dao = new DAO(getApplicationContext());
                         Produto produto = new Produto();
 
-                        produto.setNomeprod(nomep.getText().toString());
+                        produto.setNome(nomep.getText().toString());
                         produto.setDescricao(descrp.getText().toString());
                         produto.setCategoria(categp.getText().toString());
                         produto.setQuantidade(Integer.parseInt(qntp.getText().toString()));
                         produto.setValor(Double.valueOf(valorp.getText().toString()));
 
-                        Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
-                        startActivity(it);
+                        Boolean insere = banco.insereProduto(produto);
+
+                        Log.e("produto_dao","nome: "+produto.getNome()+" desc: "
+                                +produto.getDescricao()+" categ: "+produto.getCategoria()+
+                                " quanti: "+produto.getQuantidade()+" valoe: "+produto.getValor());
+
+                        if(insere == true){
+                            Toast.makeText(Adicao_novos_produtos.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+//                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
+                            startActivity(it);
+                        }else {
+                            Toast.makeText(Adicao_novos_produtos.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_SHORT).show();
+                        }
 
                     }else {
                         Toast.makeText(Adicao_novos_produtos.this, "Existem campos vazios, preencha-os e tente novamente!", Toast.LENGTH_LONG).show();

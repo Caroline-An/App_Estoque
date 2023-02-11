@@ -26,7 +26,7 @@ public class DAO extends SQLiteOpenHelper {
         //executando a criação da tabela
         db.execSQL(sql1);
 
-        String sql2 = ("CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeprod VARCHAR(100), descricao VARCHAR(100), categoria VARCHAR(100), quantidade INT, valor DECIMAL)");
+        String sql2 = ("CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), descricao VARCHAR(100), categoria VARCHAR(100), quantidade INT, valor DECIMAL)");
 
         //executando a criação da tabela
         db.execSQL(sql2);
@@ -54,13 +54,13 @@ public class DAO extends SQLiteOpenHelper {
     }
 
     public boolean insereUser(Usuario user){
-        SQLiteDatabase dbu = getWritableDatabase();
-        ContentValues dadosu = new ContentValues();
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
 
-        dadosu.put("nome", user.getNome());
-        dadosu.put("senha", user.getSenha());
+        dados.put("nome", user.getNome());
+        dados.put("senha", user.getSenha());
 
-        if(dbu.insert("usuario", null, dadosu) != -1){
+        if(db.insert("usuario", null, dados) != -1){
             return true;
         }else{
             return false;
@@ -81,22 +81,26 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
-    public void insereProduto(Produto produto){
-        SQLiteDatabase dbp = getWritableDatabase();
-        ContentValues dadosp = new ContentValues();
+    public boolean insereProduto(Produto produto){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
 
-        dadosp.put("nome", produto.getNomeprod());
-        dadosp.put("descricao", produto.getDescricao());
-        dadosp.put("categoria", produto.getCategoria());
-        dadosp.put("quantidade", produto.getQuantidade());
-        dadosp.put("valor", produto.getValor());
+        dados.put("nome", produto.getNome());
+        dados.put("descricao", produto.getDescricao());
+        dados.put("categoria", produto.getCategoria());
+        dados.put("quantidade", produto.getQuantidade());
+        dados.put("valor", produto.getValor());
 
-        dbp.insert("produto", null, dadosp);
+        if(db.insert("produto", null, dados) != -1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public List<Produto> buscaCategoriaProduto(){
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT categoria FROM pessoa;";
+        String sql = "SELECT categoria FROM produto;";
 
         Cursor c = db.rawQuery(sql, null);
 
