@@ -2,21 +2,18 @@ package com.example.appestoque.dao;
 
 public class Usuario {
 
-    String nomeu, senhau;
+    String nome, senha;
 
-    public String getNomeu() {
-        return nomeu;
+    public String getNome() {
+        return nome;
     }
-
-    public void setNomeu(String nomeu) {
-        this.nomeu = nomeu;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-
-    public String getSenhau() {
-        return senhau;
+    public String getSenha() {
+        return senha;
     }
-
-    public void setSenhau(String senhau) {
-        this.senhau = senhau;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

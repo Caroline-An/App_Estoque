@@ -53,14 +53,18 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
-    public void insereUser(Usuario user){
+    public boolean insereUser(Usuario user){
         SQLiteDatabase dbu = getWritableDatabase();
         ContentValues dadosu = new ContentValues();
 
-        dadosu.put("nome", user.getNomeu());
-        dadosu.put("senha", user.getSenhau());
+        dadosu.put("nome", user.getNome());
+        dadosu.put("senha", user.getSenha());
 
-        dbu.insert("usuario", null, dadosu);
+        if(dbu.insert("usuario", null, dadosu) != -1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Boolean verificarSenha(String nomeusuario, String senha){
