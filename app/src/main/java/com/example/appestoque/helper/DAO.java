@@ -21,7 +21,7 @@ public class DAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //criando tabela
-        String sql1 = ("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeuser VARCHAR(100), senha VARCHAR(10))");
+        String sql1 = ("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), senha VARCHAR(10))");
 
         //executando a criação da tabela
         db.execSQL(sql1);
@@ -45,7 +45,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Boolean verificarUsuario(String nomeusuario){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM usuarios WHERE nomeusuario=?", new String[] {nomeusuario});
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=?", new String[] {nomeusuario});
         if (cursor.getCount()>0){
             return true;
         }else {
@@ -71,7 +71,7 @@ public class DAO extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //o cursor vai buscar na tabela do banco se existe algum usuário com o nome e a senha informados
-        Cursor cursor = db.rawQuery("SELECT * FROM usuarios WHERE nomeusuario=? AND senha=?", new String[] {nomeusuario, senha});
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=? AND senha=?", new String[] {nomeusuario, senha});
 
         //o cursor conta o resultado da busca, se for maior que 0 ele retorna true, se não, retorna false
         if (cursor.getCount()>0){
