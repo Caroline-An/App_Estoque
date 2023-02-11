@@ -38,12 +38,16 @@ public class Cadastro extends AppCompatActivity {
             cadastrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String usuario = nomeusuario.getText().toString();
+                    String nomeudosuario = nomeusuario.getText().toString();
                     String senhaqvai = senha.getText().toString();
                     String confsenha = confirmasenha.getText().toString();
+                    Usuario usuario = new Usuario();
+
+                    usuario.setNome(nomeudosuario);
+                    usuario.setSenha(senhaqvai);
 
                     //verifica se há algum campo vazio
-                    if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(senhaqvai) || TextUtils.isEmpty(confsenha)){
+                    if(TextUtils.isEmpty(nomeudosuario) || TextUtils.isEmpty(senhaqvai) || TextUtils.isEmpty(confsenha)){
                         Toast.makeText(Cadastro.this, "Existem campos em branco, por favor preencha-os", Toast.LENGTH_SHORT).show();
                     }else{
 
@@ -51,7 +55,7 @@ public class Cadastro extends AppCompatActivity {
                         if (senhaqvai.equals(confsenha)){
 
                             //verifica se o nome de usuário já existe no banco
-                            Boolean veriusuario = banco.verificarUsuario(usuario);
+                            Boolean veriusuario = banco.verificarUsuario(nomeudosuario);
 
                             //se não tiver registro do nome informado, ele insere no banco
                             if (veriusuario == false){

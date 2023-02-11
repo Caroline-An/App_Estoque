@@ -21,7 +21,7 @@ public class DAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //criando tabela
-        String sql1 = ("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeuser VARCHAR(100), senha VARCHAR(10))");
+        String sql1 = ("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), senha VARCHAR(10))");
 
         //executando a criação da tabela
         db.execSQL(sql1);
@@ -45,7 +45,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Boolean verificarUsuario(String nomeusuario){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM usuarios WHERE nomeusuario=?", new String[] {nomeusuario});
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=?", new String[] {nomeusuario});
         if (cursor.getCount()>0){
             return true;
         }else {
@@ -53,21 +53,25 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
-    public void insereUser(Usuario user){
+    public boolean insereUser(Usuario user){
         SQLiteDatabase dbu = getWritableDatabase();
         ContentValues dadosu = new ContentValues();
 
-        dadosu.put("nome", user.getNomeu());
-        dadosu.put("senha", user.getSenhau());
+        dadosu.put("nome", user.getNome());
+        dadosu.put("senha", user.getSenha());
 
-        dbu.insert("usuario", null, dadosu);
+        if(dbu.insert("usuario", null, dadosu) != -1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Boolean verificarSenha(String nomeusuario, String senha){
         SQLiteDatabase db = this.getWritableDatabase();
 
         //o cursor vai buscar na tabela do banco se existe algum usuário com o nome e a senha informados
-        Cursor cursor = db.rawQuery("SELECT * FROM usuarios WHERE nomeusuario=? AND senha=?", new String[] {nomeusuario, senha});
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=? AND senha=?", new String[] {nomeusuario, senha});
 
         //o cursor conta o resultado da busca, se for maior que 0 ele retorna true, se não, retorna false
         if (cursor.getCount()>0){
