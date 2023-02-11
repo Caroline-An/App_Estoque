@@ -139,4 +139,11 @@ public class DAO extends SQLiteOpenHelper {
 
     }
 
+    public void entraCateg(Produto categ){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT nome, descricao, categoria, quantidade, valor FROM produto WHERE categoria = " + "'" + categ + "'";
+        db.execSQL(sql);
+    }
+
 }

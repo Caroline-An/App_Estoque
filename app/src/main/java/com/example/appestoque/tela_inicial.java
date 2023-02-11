@@ -19,10 +19,17 @@ public class tela_inicial extends AppCompatActivity {
     TextView homet, novot, relatoriot;
 
     //aplicando redirecionamento correto para todas as funcionalidades necessárias
+<<<<<<< HEAD
+        DAO banco = new DAO(this);
+        Produto produto = new Produto();
+
+        Boolean insere = banco.insereProduto(produto);
+=======
     DAO banco = new DAO(this);
     Produto produto = new Produto();
 
     Boolean insere = banco.insereProduto(produto);
+>>>>>>> origin/master
     //
 
     @Override
@@ -53,7 +60,11 @@ public class tela_inicial extends AppCompatActivity {
             public void onClick(View v) {
                 //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
                 if (insere == true){
+<<<<<<< HEAD
+                    Intent it = new Intent(tela_inicial.this, tela_inicial_categorias.class);
+=======
                     Intent it = new Intent(tela_inicial.this,tela_inicial.class);
+>>>>>>> origin/master
                     startActivity(it);
                 } else {
                     Intent it = new Intent(tela_inicial.this, tela_inicial.class);
@@ -67,7 +78,11 @@ public class tela_inicial extends AppCompatActivity {
             public void onClick(View v) {
                 //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
                 if (insere == true){
+<<<<<<< HEAD
+                    Intent it = new Intent(tela_inicial.this, tela_inicial_categorias.class);
+=======
                     Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+>>>>>>> origin/master
                     startActivity(it);
                 } else {
                     Intent it = new Intent(tela_inicial.this, tela_inicial.class);
