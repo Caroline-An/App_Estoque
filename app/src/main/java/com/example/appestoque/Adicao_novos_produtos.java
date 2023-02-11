@@ -2,8 +2,6 @@ package com.example.appestoque;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -66,33 +64,7 @@ public class Adicao_novos_produtos extends AppCompatActivity {
             cadprod = findViewById(R.id.botao_cadastProd);
         //
 
-        //king -- cadastrando produto
 
-            cadprod.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (!(nomep.getText().toString().equals("") || descrp.getText().toString().equals("") || qntp.getText().toString().equals("") || categp.getText().toString().equals("") || qntp.getText().toString().equals("") || categp.getText().toString().equals("") || valorp.getText().toString().equals(""))){
-                        DAO dao = new DAO(getApplicationContext());
-                        Produto produto = new Produto();
-
-                        produto.setNomeprod(nomep.getText().toString());
-                        produto.setDescricao(descrp.getText().toString());
-                        produto.setCategoria(categp.getText().toString());
-                        produto.setQuantidade(Integer.parseInt(qntp.getText().toString()));
-                        produto.setValor(Double.valueOf(valorp.getText().toString()));
-
-                        Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
-                        startActivity(it);
-
-                    }else {
-                        Toast.makeText(Adicao_novos_produtos.this, "Existem campos vazios, preencha-os e tente novamente!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-        //
 
         //Ana -- usando a câmera
             addfoto.setOnClickListener(new View.OnClickListener() {
