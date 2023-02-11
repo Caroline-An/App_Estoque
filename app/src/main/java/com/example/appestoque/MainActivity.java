@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         DAO bd;
     //
 
-    //-- para ver outras telas EXCLUIR DPS
-    Button irtelas;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             //vinculando com o arquivo de layout
             binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        banco = new DAO(this);
+            banco = new DAO(this);
 
                 //crianndo view
             View view = binding.getRoot();
@@ -129,20 +126,6 @@ public class MainActivity extends AppCompatActivity {
             });
 
         //
-
-        //VER OUTRAS TELAS EXCLUIR DEPOIS
-        irtelas = findViewById(R.id.botao_irtelas);
-
-        irtelas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, tela_inicial.class);
-                startActivity(it);
-            }
-        });
-
-
-
 
     }
 
