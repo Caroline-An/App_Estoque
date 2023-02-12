@@ -46,7 +46,7 @@ public class relatorio extends AppCompatActivity {
         DAO banco = new DAO(this);
         Produto produto = new Produto();
 
-        Boolean insere = banco.insereProduto(produto);
+        Boolean busca = banco.verificarSeHaProduto();
     //
 
 
@@ -68,7 +68,7 @@ public class relatorio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (insere == true){
+                if (busca == true){
                     Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
                     startActivity(it);
                 } else {
@@ -89,7 +89,7 @@ public class relatorio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (insere == true){
+                if (busca == true){
                     Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
                     startActivity(it);
                 } else {

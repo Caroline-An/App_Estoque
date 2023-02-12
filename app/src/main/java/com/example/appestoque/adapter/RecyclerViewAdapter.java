@@ -59,8 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 DAO dao = new DAO(context);
-                dao.buscaProdutos(categorias[position]);
-
+                //dao.buscaProdutos(categorias[position]);
 
             }
         });

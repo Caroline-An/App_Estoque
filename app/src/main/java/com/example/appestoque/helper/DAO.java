@@ -138,7 +138,7 @@ public class DAO extends SQLiteOpenHelper {
         return produtos;
     }
 
-    public List<Produto> buscaProdutos(String categ){
+    public List<Produto> buscaProdutos(Produto categ){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM produto WHERE categoria = " + "'" + categ + "'";
         db.execSQL(sql);
