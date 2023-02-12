@@ -33,6 +33,8 @@ public class Adicao_novos_produtos extends AppCompatActivity {
         ImageView camera;
         Button addfoto, cadprod;
         DAO banco;
+
+
     //
 
     //king -- barra inferior
@@ -92,21 +94,15 @@ public class Adicao_novos_produtos extends AppCompatActivity {
                                 +produto.getDescricao()+" categ: "+produto.getCategoria()+
                                 " quanti: "+produto.getQuantidade()+" valoe: "+produto.getValor());
 
+                        //se cadastra certinho
                         if(insere == true){
-                            Toast.makeText(Adicao_novos_produtos.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                             Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
+                             startActivity(it);
 
-                            //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-//                        if (insere == true){
-//                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
-//                            startActivity(it);
-//                        } else {
-                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                            startActivity(it);
-//                        }
+                             Toast.makeText(Adicao_novos_produtos.this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
                         }else {
-                            Toast.makeText(Adicao_novos_produtos.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Adicao_novos_produtos.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_LONG).show();
                         }
-
                     }else {
                         Toast.makeText(Adicao_novos_produtos.this, "Existem campos vazios, preencha-os e tente novamente!", Toast.LENGTH_LONG).show();
                     }
@@ -148,16 +144,29 @@ public class Adicao_novos_produtos extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                    startActivity(it);
+                }
+
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 

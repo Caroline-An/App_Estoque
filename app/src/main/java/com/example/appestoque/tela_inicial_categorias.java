@@ -24,6 +24,7 @@ public class tela_inicial_categorias extends AppCompatActivity {
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
     Context context;
+    DAO banco;
     RecyclerView listacateg;
 
     //layouts dinâmicos
@@ -45,21 +46,35 @@ public class tela_inicial_categorias extends AppCompatActivity {
         relatoriot = findViewById(R.id.idrelatorio);
         listacateg = findViewById(R.id.lista_categorias);
 
+        banco = new DAO(this);
+
         buscaNoBanco();
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 

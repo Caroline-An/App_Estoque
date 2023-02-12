@@ -57,9 +57,19 @@ public class relatorio extends AppCompatActivity {
         relatorio = findViewById(R.id.iconrelatorio);
         relatoriot = findViewById(R.id.idrelatorio);
 
+        banco = new DAO(this);
+
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
@@ -73,8 +83,14 @@ public class relatorio extends AppCompatActivity {
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(relatorio.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
