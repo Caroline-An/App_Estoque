@@ -39,9 +39,16 @@ public class relatorio extends AppCompatActivity {
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
     private static final int CREATEPDF = 1;
-    DAO banco;
     int altura;
     double total=0;
+
+    //aplicando redirecionamento correto para todas as funcionalidades necessárias
+        DAO banco = new DAO(this);
+        Produto produto = new Produto();
+
+        Boolean insere = banco.insereProduto(produto);
+    //
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,14 @@ public class relatorio extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
@@ -73,8 +88,14 @@ public class relatorio extends AppCompatActivity {
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(relatorio.this, tela_inicial.class);
-                startActivity(it);
+                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+                if (insere == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else {
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
