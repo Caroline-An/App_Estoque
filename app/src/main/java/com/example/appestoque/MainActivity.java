@@ -134,15 +134,15 @@ public class MainActivity extends AppCompatActivity {
         //
 
         //VER OUTRAS TELAS EXCLUIR DEPOIS
-        irtelas = findViewById(R.id.botao_irtelas);
+//        irtelas = findViewById(R.id.botao_irtelas);
 
-        irtelas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, tela_inicial.class);
-                startActivity(it);
-            }
-        });
+//        irtelas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent it = new Intent(MainActivity.this, tela_inicial.class);
+//                startActivity(it);
+//            }
+//        });
 
 
 
