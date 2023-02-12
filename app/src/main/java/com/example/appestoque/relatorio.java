@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.viewmodel.CreationExtras;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Picture;
+import android.graphics.drawable.PictureDrawable;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
@@ -134,25 +137,30 @@ public class relatorio extends AppCompatActivity {
                     PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1240, 1754, 1).create();
                     PdfDocument.Page page = pdfDocument.startPage(pageInfo);
                     Canvas canvas = page.getCanvas();
+                    canvas.drawColor(0xFFE9F3FD);
+
                     paint.setTextAlign(Paint.Align.CENTER);
                     paint.setTextSize(40f);
                     paint.setFakeBoldText(true);
-                    canvas.drawText("Relatório de Estoque", pageInfo.getPageWidth()/2, 50, paint);
+                    canvas.drawText("Relatório de Estoque", pageInfo.getPageWidth()/2, 175, paint);
 
                     paint.setTextAlign(Paint.Align.LEFT);
                     paint.setTextSize(32f);
                     paint.setFakeBoldText(false);
                     paint.setColor(Color.BLACK);
 
-                    canvas.drawText("Categorias:"+nomeVeiculo, 70,75, paint);
-                    canvas.drawText("Maior quantidade em estoque:"+nomeVeiculo, 50,75, paint);
-                    canvas.drawText("Menor qauntidade em estoque:"+valorVeiculo, 50, 105, paint);
-                    canvas.drawText("Maior preço em estoque:"+maior_preco, 50, 135, paint);
-                    canvas.drawText("Menor preço em estoque:"+menor_preco, 50, 135, paint);
+                    canvas.drawText("Categorias:  "+nomeVeiculo, 50,275, paint);
+                    canvas.drawText("Maior quantidade em estoque:  "+nomeVeiculo, 50,375, paint);
+                    canvas.drawText("Menor qauntidade em estoque:  "+valorVeiculo, 50, 475, paint);
+                    canvas.drawText("Maior preço em estoque:  "+maior_preco, 50, 575, paint);
+                    canvas.drawText("Menor preço em estoque:  "+menor_preco, 50, 675, paint);
 
-                    canvas.drawLine(48,80,pageInfo.getPageWidth()-100, 90, paint);
-                    canvas.drawLine(48,110,pageInfo.getPageWidth()-100, 120, paint);
-                    canvas.drawLine(48,140,pageInfo.getPageWidth()-100, 150, paint);
+                    canvas.drawLine(48,275,pageInfo.getPageWidth()-100, 275, paint);
+                    canvas.drawLine(48,375,pageInfo.getPageWidth()-100, 375, paint);
+                    canvas.drawLine(48,475,pageInfo.getPageWidth()-100, 475, paint);
+                    canvas.drawLine(48,575,pageInfo.getPageWidth()-100, 575, paint);
+                    canvas.drawLine(48,675,pageInfo.getPageWidth()-100, 675, paint);
+
                     pdfDocument.finishPage(page);
                     gravarPdf(caminhDoArquivo, pdfDocument);
                 }
