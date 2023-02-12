@@ -95,9 +95,14 @@ public class Adicao_novos_produtos extends AppCompatActivity {
                         if(insere == true){
                             Toast.makeText(Adicao_novos_produtos.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
-//                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
+                            //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
+//                        if (insere == true){
+//                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_itens.class);
+//                            startActivity(it);
+//                        } else {
+                            Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
                             startActivity(it);
+//                        }
                         }else {
                             Toast.makeText(Adicao_novos_produtos.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_SHORT).show();
                         }
