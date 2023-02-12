@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent it = new Intent(MainActivity.this, tela_inicial_categorias.class);
                                 startActivity(it);
                             }else {
-
+//
                                 Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                                 Intent it = new Intent(MainActivity.this, tela_inicial.class);
                                 startActivity(it);
