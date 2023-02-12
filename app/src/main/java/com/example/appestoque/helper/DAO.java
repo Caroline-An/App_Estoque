@@ -110,6 +110,15 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor selectProduto(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql_select = "SELECT * FROM produto;";
+        Cursor lista = db.rawQuery(sql_select, null);
+
+        return lista;
+    }
+
     public List<Produto> buscaCategoriaProduto(){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT categoria FROM produto;";

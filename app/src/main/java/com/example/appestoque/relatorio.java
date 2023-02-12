@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.viewmodel.CreationExtras;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,6 +39,9 @@ public class relatorio extends AppCompatActivity {
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
     private static final int CREATEPDF = 1;
+    DAO banco;
+    int altura;
+    double total=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,20 +123,12 @@ public class relatorio extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        banco = new DAO(this);
+
         if(requestCode == CREATEPDF){
             if(data.getData()!=null){
                 if(true) {
                     Uri caminhDoArquivo = data.getData();
-
-//                    String nomeVeiculo = campoNome.getText().toString();
-//                    String valorVeiculo = campoValor.getText().toString();
-//                    String descricaoVeiculo = campoDescricao.getText().toString();
-
-                    String nomeVeiculo = "300 frutas";
-                    String valorVeiculo = "5 carros";
-                    String maior_preco = "R$ 55000";
-                    String menor_preco = "R$ 40";
-
                     PdfDocument pdfDocument = new PdfDocument();
                     Paint paint = new Paint();
                     PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1240, 1754, 1).create();
@@ -150,20 +146,55 @@ public class relatorio extends AppCompatActivity {
                     paint.setFakeBoldText(false);
                     paint.setColor(Color.BLACK);
 
-                    canvas.drawText("Categorias:  frustas, veículos, materiáis, ferramentas", 50,275, paint);
-                    canvas.drawText("Maior quantidade em estoque:  "+nomeVeiculo, 50,375, paint);
-                    canvas.drawText("Menor qauntidade em estoque:  "+valorVeiculo, 50, 475, paint);
-                    canvas.drawText("Maior preço em estoque:  "+maior_preco, 50, 575, paint);
-                    canvas.drawText("Menor preço em estoque:  "+menor_preco, 50, 675, paint);
+                    canvas.drawText("Nome", 50,200, paint);
+                    canvas.drawText("Descrição", 250,200, paint);
+                    canvas.drawText("Categoria", 450, 200, paint);
+                    canvas.drawText("Quantidade", 650, 200, paint);
+                    canvas.drawText("Valor", 850, 200, paint);
+                    canvas.drawText("Total", 1000, 200, paint);
+                    canvas.drawLine(48,210,pageInfo.getPageWidth()-100, 210, paint);
+
+                    Cursor cursor = banco.selectProduto();
+                    Produto produto = new Produto();
+                    altura= 275;
+                    String descricao = "";
+                    String nome = "";
+                    int quantidade = 0;
+                    Double precoprod;
+                    String categoria;
+                    int cod;
+
+                    if (cursor != null) {
+                        if (cursor.moveToFirst()) {
+
+                            do {
+
+                                nome = cursor.getString(1);
+                                descricao = cursor.getString(2);
+                                categoria = cursor.getString(3);
+                                quantidade = cursor.getInt(4);
+                                int valor = cursor.getInt(5);
+
+                                canvas.drawText(""+nome, 50, altura, paint);
+                                canvas.drawText(""+descricao, 250, altura, paint);
+                                canvas.drawText(""+categoria, 450, altura, paint);
+                                canvas.drawText(""+quantidade, 650, altura, paint);
+                                canvas.drawText(""+valor, 850, altura, paint);
+                                canvas.drawText("R$ "+(valor*quantidade), 1000, altura, paint);
+                                total = total + (valor*quantidade);
+//                                canvas.drawLine(48,altura,pageInfo.getPageWidth()-100, altura, paint);
+                                //listadeprod.add(listprod);
+                                altura = altura + 100;
+                            } while (cursor.moveToNext());
+                            canvas.drawText("R$ "+total, 1000, altura, paint);
+                            altura=altura-50;
+                            canvas.drawLine(48,altura,pageInfo.getPageWidth()-100, altura, paint);
+                        }
+                    }
 
                     Date data_atual = new Date();
                     canvas.drawText("Data atual:  "+data_atual.toString(), 500, 1635, paint);
 
-                    canvas.drawLine(48,275,pageInfo.getPageWidth()-100, 275, paint);
-                    canvas.drawLine(48,375,pageInfo.getPageWidth()-100, 375, paint);
-                    canvas.drawLine(48,475,pageInfo.getPageWidth()-100, 475, paint);
-                    canvas.drawLine(48,575,pageInfo.getPageWidth()-100, 575, paint);
-                    canvas.drawLine(48,675,pageInfo.getPageWidth()-100, 675, paint);
 
                     pdfDocument.finishPage(page);
                     gravarPdf(caminhDoArquivo, pdfDocument);
