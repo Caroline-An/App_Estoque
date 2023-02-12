@@ -43,6 +43,56 @@ public class relatorio extends AppCompatActivity {
     int altura;
     double total=0;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_relatorio);
+
+        pdf = findViewById(R.id.botao_pdf);
+
+        home = findViewById(R.id.iconHome);
+        homet = findViewById(R.id.idhome);
+        novo = findViewById(R.id.iconnovo);
+        novot = findViewById(R.id.idnovo);
+        relatorio = findViewById(R.id.iconrelatorio);
+        relatoriot = findViewById(R.id.idrelatorio);
+
+        banco = new DAO(this);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
+            }
+        });
+
+        pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gerar_relatorio("Relatorio");
+            }
+        });
+
+        homet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(relatorio.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(relatorio.this, tela_inicial.class);
+                    startActivity(it);
+                }
+            }
+        });
 
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
