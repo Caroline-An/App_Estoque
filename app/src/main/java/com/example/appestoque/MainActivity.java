@@ -102,17 +102,17 @@ public class MainActivity extends AppCompatActivity {
                             Boolean insere = banco.verificarSeHaProduto();
 
 
-                            if(insere == true){
-
-                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                                Intent it = new Intent(MainActivity.this, tela_inicial_itens.class);
-                                startActivity(it);
-                            }else {
+//                            if(insere == true){
+//
+//                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+//                                Intent it = new Intent(MainActivity.this, tela_inicial_itens.class);
+//                                startActivity(it);
+//                            }else {
 
                                 Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                                 Intent it = new Intent(MainActivity.this, tela_inicial.class);
                                 startActivity(it);
-                            }
+//                            }
 
 
                         }else {
