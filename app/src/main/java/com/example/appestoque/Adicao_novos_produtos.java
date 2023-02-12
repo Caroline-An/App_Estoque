@@ -140,7 +140,21 @@ public class Adicao_novos_produtos extends AppCompatActivity {
 
         //
 
+        //king -- barra inferior
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                    startActivity(it);
+                }
 
+            }
+        });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
