@@ -13,6 +13,8 @@ import com.example.appestoque.Cadastro;
 import com.example.appestoque.R;
 import com.example.appestoque.tela_itens;
 
+import kotlin.text.UStringsKt;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     Context context;
     String[] categorias;
@@ -52,5 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
     public int getItemCount() {
         return categorias.length;
+    }
+    public String getItemlenght() {
+        return "length";
     }
 }
