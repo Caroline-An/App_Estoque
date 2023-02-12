@@ -46,38 +46,46 @@ public class Cadastro extends AppCompatActivity {
                     usuario.setNome(nomeudosuario);
                     usuario.setSenha(senhaqvai);
 
-                    //verifica se há algum campo vazio
-                    if(TextUtils.isEmpty(nomeudosuario) || TextUtils.isEmpty(senhaqvai) || TextUtils.isEmpty(confsenha)){
-                        Toast.makeText(Cadastro.this, "Existem campos em branco, por favor preencha-os", Toast.LENGTH_SHORT).show();
-                    }else{
+                    //verifica campos vazios, se não houver ele vai verificar se as senhas são iguais
+                    if(!(TextUtils.isEmpty(nomeudosuario) || TextUtils.isEmpty(senhaqvai) || TextUtils.isEmpty(confsenha))){
 
                         //verifica se as senhas são iguais
-                        if (senhaqvai.equals(confsenha)){
+                        if(senhaqvai.equals(confsenha)){
 
                             //verifica se o nome de usuário já existe no banco
                             Boolean veriusuario = banco.verificarUsuario(nomeudosuario);
 
                             //se não tiver registro do nome informado, ele insere no banco
                             if (veriusuario == false){
+
                                 Boolean insere = banco.insereUser(usuario);
 
-                                Log.e("mensagem", senhaqvai+usuario);
-
+                                //se der tudo certo, mostra mensagem de sucesso e vai para a tela de login
                                 if(insere == true){
-                                    Toast.makeText(Cadastro.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-
-                                    Intent it = new Intent(Cadastro.this, tela_inicial.class);
+                                    Toast.makeText(Cadastro.this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+                                    Intent it = new Intent(Cadastro.this, MainActivity.class);
                                     startActivity(it);
+
+                                    //se não der certo, mostra mensagem de falha
                                 }else {
-                                    Toast.makeText(Cadastro.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Cadastro.this, "Falha ao tentar cadastrar! Tente novamente.", Toast.LENGTH_LONG).show();
                                 }
-                            }else {
-                                Toast.makeText(Cadastro.this, "Usuário já existe! Escolha outro nome e tente novamente.", Toast.LENGTH_SHORT).show();
+
+                                //se houver, exibe mensagem de usuário já existente
+                            } else {
+                                Toast.makeText(Cadastro.this, "Usuário já existe, por favor tente outro!", Toast.LENGTH_LONG).show();
                             }
-                        }else{
-                            Toast.makeText(Cadastro.this, "As senhas não combinam, tente novamente", Toast.LENGTH_SHORT).show();
+
+                            //se não forem iguais, mostra mensagem de erro
+                        } else {
+                            Toast.makeText(Cadastro.this, "As senhas não combinam, tente novamente", Toast.LENGTH_LONG).show();
                         }
+
+                        //se houver campos vazios, mostra mensagem de erro
+                    } else {
+                        Toast.makeText(Cadastro.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                     }
+
                 }
             });
 
