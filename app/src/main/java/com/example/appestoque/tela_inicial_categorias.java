@@ -3,16 +3,13 @@ package com.example.appestoque;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.appestoque.adapter.RecyclerViewAdapter;
@@ -22,7 +19,7 @@ import com.example.appestoque.helper.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tela_inicial_itens extends AppCompatActivity {
+public class tela_inicial_categorias extends AppCompatActivity {
 
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
@@ -37,7 +34,7 @@ public class tela_inicial_itens extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_inicial_itens);
+        setContentView(R.layout.activity_tela_inicial_categorias);
 
         context = getApplicationContext();
         home = findViewById(R.id.iconHome);
@@ -53,7 +50,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
+                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
                 startActivity(it);
             }
         });
@@ -61,7 +58,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, tela_inicial.class);
+                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
                 startActivity(it);
             }
         });
@@ -69,7 +66,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, Adicao_novos_produtos.class);
+                Intent it = new Intent(tela_inicial_categorias.this, Adicao_novos_produtos.class);
                 startActivity(it);
             }
         });
@@ -77,7 +74,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         novot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, Adicao_novos_produtos.class);
+                Intent it = new Intent(tela_inicial_categorias.this, Adicao_novos_produtos.class);
                 startActivity(it);
             }
         });
@@ -85,7 +82,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         relatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, relatorio.class);
+                Intent it = new Intent(tela_inicial_categorias.this, relatorio.class);
                 startActivity(it);
             }
         });
@@ -93,7 +90,7 @@ public class tela_inicial_itens extends AppCompatActivity {
         relatoriot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial_itens.this, relatorio.class);
+                Intent it = new Intent(tela_inicial_categorias.this, relatorio.class);
                 startActivity(it);
             }
         });

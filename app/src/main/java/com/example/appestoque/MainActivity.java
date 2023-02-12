@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appestoque.dao.Produto;
 import com.example.appestoque.databinding.ActivityMainBinding;
 import com.example.appestoque.helper.DAO;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -33,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         private FirebaseAuth mAuth;
     //
 
-    DAO banco;
     //XXX -- para login comum
         EditText nomeusuario, senha;
         Button entrar, cadastrar;
-        DAO bd;
+        DAO banco;
+        Produto produto;
     //
 
     //-- para ver outras telas EXCLUIR DPS
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             //vinculando com o arquivo de layout
             binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        banco = new DAO(this);
+            banco = new DAO(this);
 
                 //crianndo view
             View view = binding.getRoot();
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
             senha = findViewById(R.id.edit_senha);
             entrar = findViewById(R.id.botao_entrar);
             cadastrar = findViewById(R.id.botao_cadastre_se);
-            bd = new DAO(this);
 
             entrar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,35 +90,39 @@ public class MainActivity extends AppCompatActivity {
                     String senhaa = senha.getText().toString();
 
                     //veirifica se algum campo está vazio
-                    if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(senhaa)){
-                        Toast.makeText(MainActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
-                    }else {
-                        //chama o método de verificar senha no DBHelper
-                        Boolean verifiSenha = bd.verificarSenha(usuario, senhaa);
+                    if(!(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(senhaa))){
+                        //chamar o método que verifica a senha no DBHelper
+                        Boolean verifiSenha = banco.verificarSenha(usuario, senhaa);
 
-                        //se os dados estiverem no banco ele retorna true, informa que efetuou o login e vai para a tela inicial
-                        if (verifiSenha == true) {
+                        //se os dados estiverem no banco ele retorna true e
+                        if (verifiSenha == true){
 
-                            Boolean insere = banco.verificarSeHaProduto();
+                            //verifica se tem algum produto registrado
+                            Boolean busca = banco.verificarSeHaProduto();
 
+                            //se houver ele informa que efetuou o login e vai para a tela inicial com produtos
+                            if (busca == true){
+                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                                Intent it = new Intent(MainActivity.this, tela_inicial_categorias.class);
+                                startActivity(it);
 
-//                            if(insere == true){
-//
-//                                Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-//                                Intent it = new Intent(MainActivity.this, tela_inicial_itens.class);
-//                                startActivity(it);
-//                            }else {
-
+                                //se não houver ele informa que efetuou o login e vai para a tela inicial sem produtos
+                            } else {
                                 Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                                 Intent it = new Intent(MainActivity.this, tela_inicial.class);
                                 startActivity(it);
-//                            }
+                            }
 
-
-                        }else {
-                            Toast.makeText(MainActivity.this, "Erro de autenticação! Tente novamente.", Toast.LENGTH_SHORT).show();
+                            //se os dados não estiverem no banco ele retorna false e exibe mensagem de erro
+                        } else {
+                            Toast.makeText(MainActivity.this, "Erro de autenticação. Verifique seus dados e tente novamente!", Toast.LENGTH_SHORT).show();
                         }
+
+                        //se algum campo estiver vazio exibe mensagem de erro
+                    } else {
+                        Toast.makeText(MainActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                     }
+
                 }
             });
 

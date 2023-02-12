@@ -46,7 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewOnCreate = LayoutInflater.from(context).inflate(R.layout.activity_recyclerview, parent, false);
         viewHolderLocal = new ViewHolder(viewOnCreate);
 
-        return null;
+        return viewHolderLocal;
     }
 
     @Override
