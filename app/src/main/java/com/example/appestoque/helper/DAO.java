@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.appestoque.dao.Produto;
 import com.example.appestoque.dao.Usuario;
@@ -26,7 +27,7 @@ public class DAO extends SQLiteOpenHelper {
         //executando a criação da tabela
         db.execSQL(sql1);
 
-        String sql2 = ("CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nomeprod VARCHAR(100), descricao VARCHAR(100), categoria VARCHAR(100), quantidade INT, valor DECIMAL)");
+        String sql2 = ("CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), descricao VARCHAR(100), categoria VARCHAR(100), quantidade INT, valor DECIMAL)");
 
         //executando a criação da tabela
         db.execSQL(sql2);
@@ -45,6 +46,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Boolean verificarUsuario(String nomeusuario){
         SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE nome=?", new String[] {nomeusuario});
         if (cursor.getCount()>0){
             return true;
@@ -53,14 +55,25 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean verificarSeHaProduto(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM produto", null);
+        if (cursor.getCount()>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public boolean insereUser(Usuario user){
-        SQLiteDatabase dbu = getWritableDatabase();
-        ContentValues dadosu = new ContentValues();
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
 
-        dadosu.put("nome", user.getNome());
-        dadosu.put("senha", user.getSenha());
+        dados.put("nome", user.getNome());
+        dados.put("senha", user.getSenha());
 
-        if(dbu.insert("usuario", null, dadosu) != -1){
+        if(db.insert("usuario", null, dados) != -1){
             return true;
         }else{
             return false;
@@ -81,22 +94,35 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
-    public void insereProduto(Produto produto){
-        SQLiteDatabase dbp = getWritableDatabase();
-        ContentValues dadosp = new ContentValues();
+    public boolean insereProduto(Produto produto){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
 
-        dadosp.put("nome", produto.getNomeprod());
-        dadosp.put("descricao", produto.getDescricao());
-        dadosp.put("categoria", produto.getCategoria());
-        dadosp.put("quantidade", produto.getQuantidade());
-        dadosp.put("valor", produto.getValor());
+        dados.put("nome", produto.getNome());
+        dados.put("descricao", produto.getDescricao());
+        dados.put("categoria", produto.getCategoria());
+        dados.put("quantidade", produto.getQuantidade());
+        dados.put("valor", produto.getValor());
 
-        dbp.insert("produto", null, dadosp);
+        if(db.insert("produto", null, dados) != -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Cursor selectProduto(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql_select = "SELECT * FROM produto;";
+        Cursor lista = db.rawQuery(sql_select, null);
+
+        return lista;
     }
 
     public List<Produto> buscaCategoriaProduto(){
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT categoria FROM pessoa;";
+        String sql = "SELECT DISTINCT categoria FROM produto ;";
 
         Cursor c = db.rawQuery(sql, null);
 
@@ -107,10 +133,34 @@ public class DAO extends SQLiteOpenHelper {
 
             produto.setCategoria(c.getString(c.getColumnIndexOrThrow("categoria")));
 
+            Log.e("buscandoCategoria", "coisa" +String.valueOf(produto));
+
             produtos.add(produto);
         }
 
         return produtos;
     }
 
+    public List<Produto> buscaItemProduto(List<Produto> categ){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT * FROM produto WHERE categoria = " + categ +";";
+
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Produto> itens = new ArrayList<Produto>();
+
+        while (c.moveToNext()){
+            Produto produto = new Produto();
+
+            produto.setNome(c.getString(c.getColumnIndexOrThrow("nome")));
+            produto.setDescricao(c.getString(c.getColumnIndexOrThrow("descricao")));
+            produto.setCategoria(c.getString(c.getColumnIndexOrThrow("categoria")));
+            produto.setQuantidade(Integer.parseInt(c.getString(c.getColumnIndexOrThrow("quantidade"))));
+            produto.setValor(Double.valueOf(c.getString(c.getColumnIndexOrThrow("valor"))));
+
+            itens.add(produto);
+        }
+
+        return itens;
+    }
 }

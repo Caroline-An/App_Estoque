@@ -8,17 +8,32 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEstoque"
         tools:targetApi="31">
         <activity
+            android:name=".tela_itens"
+            android:exported="false" />
+        <activity
+            android:name=".tela_dados_produtos"
+            android:exported="false" />
+        <activity
+            android:name=".adapter.recyclerView_ITENS"
+            android:exported="false" />
+        <activity
+            android:name=".tela_inicial_produtos"
+            android:exported="false" />
+        <activity
+            android:name=".Gerar_relatorio"
+            android:exported="false" />
+        <activity
             android:name=".relatorio"
             android:exported="false" />
         <activity
-            android:name=".tela_inicial_itens"
+            android:name=".tela_inicial_categorias"
             android:exported="false" />
         <activity
             android:name=".Adicao_novos_produtos"

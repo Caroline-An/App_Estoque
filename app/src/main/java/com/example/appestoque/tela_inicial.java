@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.appestoque.helper.DAO;
+
 public class tela_inicial extends AppCompatActivity {
 
     Button botaoaddprod;
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
+
+    DAO banco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class tela_inicial extends AppCompatActivity {
         relatorio = findViewById(R.id.iconrelatorio);
         relatoriot = findViewById(R.id.idrelatorio);
 
+        banco = new DAO(this);
+
         botaoaddprod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,16 +47,28 @@ public class tela_inicial extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(tela_inicial.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(tela_inicial.this, tela_inicial.class);
-                startActivity(it);
+                Boolean busca = banco.verificarSeHaProduto();
+                if (busca == true){
+                    Intent it = new Intent(tela_inicial.this, tela_inicial_categorias.class);
+                    startActivity(it);
+                } else{
+                    Intent it = new Intent(tela_inicial.this, tela_inicial.class);
+                    startActivity(it);
+                }
             }
         });
 
