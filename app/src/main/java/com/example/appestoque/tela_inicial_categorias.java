@@ -111,5 +111,26 @@ public class tela_inicial_categorias extends AppCompatActivity {
         });
     }
 
+    private void buscaNoBanco(){
+        DAO dao = new DAO(getApplicationContext());
 
+        //lista de objetos produtos do banco
+        List<Produto> produtos = dao.buscaCategoriaProduto();
+
+        //lista de objetos categoria do banco
+        List<String> categoria = new ArrayList<String>();
+
+        String[] dados_categoria = new String[]{};
+
+        for (Produto categoriabuscada : produtos){
+            categoria.add(categoriabuscada.getCategoria());
+        }
+
+        dados_categoria = categoria.toArray(new String[0]);
+
+        recyclerviewmanager = new LinearLayoutManager(context);
+        listacateg.setLayoutManager(recyclerviewmanager);
+        recyclerviewadapter = new RecyclerViewAdapter(context, dados_categoria);
+        listacateg.setAdapter(recyclerviewadapter);
+    }
 }
