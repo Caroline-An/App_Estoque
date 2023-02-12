@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Objects;
 
 import com.example.appestoque.dao.Produto;
@@ -142,18 +143,21 @@ public class relatorio extends AppCompatActivity {
                     paint.setTextAlign(Paint.Align.CENTER);
                     paint.setTextSize(40f);
                     paint.setFakeBoldText(true);
-                    canvas.drawText("Relatório de Estoque", pageInfo.getPageWidth()/2, 175, paint);
+                    canvas.drawText("Relatório de Estoque", pageInfo.getPageWidth()/2, 145, paint);
 
                     paint.setTextAlign(Paint.Align.LEFT);
                     paint.setTextSize(32f);
                     paint.setFakeBoldText(false);
                     paint.setColor(Color.BLACK);
 
-                    canvas.drawText("Categorias:  "+nomeVeiculo, 50,275, paint);
+                    canvas.drawText("Categorias:  frustas, veículos, materiáis, ferramentas", 50,275, paint);
                     canvas.drawText("Maior quantidade em estoque:  "+nomeVeiculo, 50,375, paint);
                     canvas.drawText("Menor qauntidade em estoque:  "+valorVeiculo, 50, 475, paint);
                     canvas.drawText("Maior preço em estoque:  "+maior_preco, 50, 575, paint);
                     canvas.drawText("Menor preço em estoque:  "+menor_preco, 50, 675, paint);
+
+                    Date data_atual = new Date();
+                    canvas.drawText("Data atual:  "+data_atual.toString(), 500, 1635, paint);
 
                     canvas.drawLine(48,275,pageInfo.getPageWidth()-100, 275, paint);
                     canvas.drawLine(48,375,pageInfo.getPageWidth()-100, 375, paint);
