@@ -32,20 +32,12 @@ public class Adicao_novos_produtos extends AppCompatActivity {
         //talvez não use o image view
         ImageView camera;
         Button addfoto, cadprod;
-
+        DAO banco;
     //
 
     //king -- barra inferior
         ImageView home, novo, relatorio;
         TextView homet, novot, relatoriot;
-    //
-
-
-    //aplicando redirecionamento correto para todas as funcionalidades necessárias
-        DAO banco = new DAO(this);
-        Produto produto = new Produto();
-
-        Boolean busca = banco.verificarSeHaProduto();
     //
 
     @Override
@@ -156,28 +148,16 @@ public class Adicao_novos_produtos extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (busca == true){
-                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
-                    startActivity(it);
-                } else {
-                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                    startActivity(it);
-                }
+                Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                startActivity(it);
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (busca == true){
-                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial_categorias.class);
-                    startActivity(it);
-                } else {
-                    Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
-                    startActivity(it);
-                }
+                Intent it = new Intent(Adicao_novos_produtos.this, tela_inicial.class);
+                startActivity(it);
             }
         });
 

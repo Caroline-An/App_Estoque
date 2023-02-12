@@ -138,27 +138,4 @@ public class DAO extends SQLiteOpenHelper {
         return produtos;
     }
 
-    public List<Produto> buscaProdutos(Produto categ){
-        SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT * FROM produto WHERE categoria = " + "'" + categ + "'";
-        db.execSQL(sql);
-
-        Cursor c = db.rawQuery(sql, null);
-
-        List<Produto> produtos = new ArrayList<>();
-
-        while (c.moveToNext()){
-            Produto produto = new Produto();
-
-            produto.setNome(c.getString(c.getColumnIndexOrThrow("nome")));
-            produto.setDescricao(c.getString(c.getColumnIndexOrThrow("descricao")));
-            produto.setQuantidade(Integer.parseInt(c.getString(c.getColumnIndexOrThrow("quantidade"))));
-            produto.setValor(Double.valueOf(c.getString(c.getColumnIndexOrThrow("valor"))));
-
-            produtos.add(produto);
-        }
-
-        return produtos;
-    }
-
 }

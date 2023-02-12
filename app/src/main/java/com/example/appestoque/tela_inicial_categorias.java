@@ -24,19 +24,12 @@ public class tela_inicial_categorias extends AppCompatActivity {
     ImageView home, novo, relatorio;
     TextView homet, novot, relatoriot;
     Context context;
+    RecyclerView listacateg;
 
     //layouts dinâmicos
-    RecyclerView listacateg;
     LinearLayout linearLayout;
     RecyclerView.Adapter recyclerviewadapter;
     RecyclerView.LayoutManager recyclerviewmanager;
-
-    //aplicando redirecionamento correto para todas as funcionalidades necessárias
-        DAO banco = new DAO(this);
-        Produto produto = new Produto();
-
-        Boolean busca = banco.verificarSeHaProduto();
-    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,33 +47,19 @@ public class tela_inicial_categorias extends AppCompatActivity {
 
         buscaNoBanco();
 
-        Boolean insere = banco.insereProduto(produto);
-
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (busca == true){
-                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial_categorias.class);
-                    startActivity(it);
-                } else {
-                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
-                    startActivity(it);
-                }
+                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
+                startActivity(it);
             }
         });
 
         homet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Verificando se há produtos cadastrados no banco, se sim abre tela do recyclerview, se não, vai pra tela_inicial
-                if (busca == true){
-                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial_categorias.class);
-                    startActivity(it);
-                } else {
-                    Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
-                    startActivity(it);
-                }
+                Intent it = new Intent(tela_inicial_categorias.this, tela_inicial.class);
+                startActivity(it);
             }
         });
 

@@ -37,8 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         android:layout_margin="10dp"
-        android:paddingTop="10dp"
-        tools:listitem="@layout/activity_recyclerview"/>
+        android:paddingTop="10dp"/>
 
     <View
         android:id="@+id/container_downbar"

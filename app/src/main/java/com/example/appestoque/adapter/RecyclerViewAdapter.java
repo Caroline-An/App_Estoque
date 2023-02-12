@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appestoque.R;
-import com.example.appestoque.helper.DAO;
-import com.example.appestoque.tela_inicial_categorias;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
@@ -44,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         viewOnCreate = LayoutInflater.from(context).inflate(R.layout.activity_recyclerview, parent, false);
         viewHolderLocal = new ViewHolder(viewOnCreate);
 
@@ -52,17 +50,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtcategoria.setText(categorias[position]);
 
-        holder.icone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DAO dao = new DAO(context);
-                //dao.buscaProdutos(categorias[position]);
-
-            }
-        });
 
     }
 
