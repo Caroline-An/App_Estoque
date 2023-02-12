@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppEstoque"
         tools:targetApi="31">
         <activity
+            android:name=".tela_itens"
+            android:exported="false" />
+        <activity
             android:name=".tela_dados_produtos"
             android:exported="false" />
         <activity

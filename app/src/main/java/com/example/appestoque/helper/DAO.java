@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.appestoque.dao.Produto;
 import com.example.appestoque.dao.Usuario;
@@ -121,7 +122,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public List<Produto> buscaCategoriaProduto(){
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT categoria FROM produto;";
+        String sql = "SELECT DISTINCT categoria FROM produto ;";
 
         Cursor c = db.rawQuery(sql, null);
 
@@ -132,10 +133,34 @@ public class DAO extends SQLiteOpenHelper {
 
             produto.setCategoria(c.getString(c.getColumnIndexOrThrow("categoria")));
 
+            Log.e("buscandoCategoria", "coisa" +String.valueOf(produto));
+
             produtos.add(produto);
         }
 
         return produtos;
     }
 
+    public List<Produto> buscaItemProduto(List<Produto> categ){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT * FROM produto WHERE categoria = " + categ +";";
+
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Produto> itens = new ArrayList<Produto>();
+
+        while (c.moveToNext()){
+            Produto produto = new Produto();
+
+            produto.setNome(c.getString(c.getColumnIndexOrThrow("nome")));
+            produto.setDescricao(c.getString(c.getColumnIndexOrThrow("descricao")));
+            produto.setCategoria(c.getString(c.getColumnIndexOrThrow("categoria")));
+            produto.setQuantidade(Integer.parseInt(c.getString(c.getColumnIndexOrThrow("quantidade"))));
+            produto.setValor(Double.valueOf(c.getString(c.getColumnIndexOrThrow("valor"))));
+
+            itens.add(produto);
+        }
+
+        return itens;
+    }
 }

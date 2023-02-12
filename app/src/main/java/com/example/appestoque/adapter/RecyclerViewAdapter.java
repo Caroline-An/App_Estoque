@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appestoque.Cadastro;
 import com.example.appestoque.R;
+import com.example.appestoque.tela_itens;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
@@ -37,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             txtcategoria = itemView.findViewById(R.id.txtCategoria);
             icone = itemView.findViewById(R.id.iconFoto);
+
         }
     }
 
@@ -53,6 +56,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtcategoria.setText(categorias[position]);
 
+        viewOnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(context, tela_itens.class);
+                it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(it);
+            }
+        });
 
     }
 
