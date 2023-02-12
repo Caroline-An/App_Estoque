@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         DAO bd;
     //
 
+    //-- para ver outras telas EXCLUIR DPS
+    Button irtelas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             //vinculando com o arquivo de layout
             binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-            banco = new DAO(this);
+        banco = new DAO(this);
 
                 //crianndo view
             View view = binding.getRoot();
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             binding.sigingoogle.setOnClickListener(v -> {
                 signIn();
             });
+        //
+
+        //XX -- para login comum
 
             nomeusuario = findViewById(R.id.edit_nome);
             senha = findViewById(R.id.edit_senha);
@@ -99,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
                             if(insere == true){
 
                                 Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                                Intent it = new Intent(MainActivity.this, tela_inicial_categorias.class);
+                                Intent it = new Intent(MainActivity.this, tela_inicial_itens.class);
                                 startActivity(it);
                             }else {
-//
+
                                 Toast.makeText(MainActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                                 Intent it = new Intent(MainActivity.this, tela_inicial.class);
                                 startActivity(it);
@@ -126,6 +132,20 @@ public class MainActivity extends AppCompatActivity {
             });
 
         //
+
+        //VER OUTRAS TELAS EXCLUIR DEPOIS
+        irtelas = findViewById(R.id.botao_irtelas);
+
+        irtelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, tela_inicial.class);
+                startActivity(it);
+            }
+        });
+
+
+
 
     }
 
