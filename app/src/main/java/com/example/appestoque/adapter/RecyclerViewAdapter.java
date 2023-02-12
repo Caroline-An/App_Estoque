@@ -15,7 +15,24 @@ import com.example.appestoque.tela_itens;
 
 import kotlin.text.UStringsKt;
 
-
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+    Context context;
+    String[] categorias;
+    View viewOnCreate;
+    ViewHolder viewHolderLocal;
+    public RecyclerViewAdapter(Context contextRecebido, String[] categoriasRecebidas){
+        context = contextRecebido;
+        categorias = categoriasRecebidas;
+    }
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        public TextView txtcategoria;
+        public ImageView icone;
+        public ViewHolder( View itemView) {
+            super(itemView);
+            txtcategoria = itemView.findViewById(R.id.txtCategoria);
+            icone = itemView.findViewById(R.id.iconFoto);
+        }
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
