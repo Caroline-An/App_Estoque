@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity1">
+
+    <TextView
+        android:id="@+id/index"
+        android:layout_width="346dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/text_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="32dp"
+        android:hint="nome     descr     categ     quant     preço"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="250dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="32dp"
+        android:hint="Lista de Produtos"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+
+    <ListView
+        android:id="@+id/listViewProduto"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@+id/index"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="-11dp"
+        android:layout_marginEnd="12dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <Button
+        android:id="@+id/btn_cadastrar"
+        style="@style/botao"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_below="@+id/listViewProduto"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="32dp"
+        android:layout_toStartOf="@+id/voltar"
+        android:text="Cadastrar Produto" />
+
+    <Button
+        android:id="@+id/voltar"
+        style="@style/botao"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_below="@+id/listViewProduto"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="32dp"
+        android:text="Voltar" />
+
+    <TextView
+        android:id="@+id/text_vazio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listViewProduto"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="176dp"
+        android:hint="Não há Produtos cadastrados"
+        android:textSize="16sp" />
+
+</RelativeLayout>

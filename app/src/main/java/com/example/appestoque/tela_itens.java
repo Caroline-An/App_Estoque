@@ -1,7 +1,6 @@
 package com.example.appestoque;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -12,12 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.appestoque.adapter.RecyclerViewAdapter;
-import com.example.appestoque.dao.Produto;
 import com.example.appestoque.helper.DAO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class tela_itens extends AppCompatActivity {
 
@@ -112,31 +106,42 @@ public class tela_itens extends AppCompatActivity {
     }
 
     private void buscaNoBanco(){
-        DAO dao = new DAO(getApplicationContext());
 
-        //lista de objetos produtos do banco
-        List<Produto> produtos = dao.buscaCategoriaProduto(); //retorna as categorias
+        Intent it = new Intent(tela_itens.this, MainActivity1.class);
+        startActivity(it);
 
-        dao.buscaItemProduto(produtos); //retorna os itens
+//        DAO dao = new DAO(getApplicationContext());
+//
+//        //lista de objetos produtos do banco
+////        List<Produto> produtos = dao.buscaCategoriaProduto(); //retorna as categorias
+//
+//        List<Produto> produtos = dao.buscaItemProduto("fruta"); //retorna os itens
+//
+//        //lista de objetos itens do banco
+//        List<String> itens = new ArrayList<String>();
+//
+//        String[] dados_itens = new String[]{};
+//
+//        for (Produto itembuscado : produtos){
+//            itens.add(itembuscado.getNome());
+//            itens.add(itembuscado.getDescricao());
+//            itens.add(itembuscado.getCategoria());
+//            itens.add(String.valueOf(itembuscado.getQuantidade()));
+//            itens.add(String.valueOf(itembuscado.getValor()));
+//        }
+//
+//        dados_itens = itens.toArray(new String[0]);
+//
+//        Cursor lista = dao.selectProduto();
 
-        //lista de objetos itens do banco
-        List<String> itens = new ArrayList<String>();
-
-        String[] dados_itens = new String[]{};
-
-        for (Produto itembuscado : produtos){
-            itens.add(itembuscado.getNome());
-            itens.add(itembuscado.getDescricao());
-            itens.add(itembuscado.getCategoria());
-            itens.add(String.valueOf(itembuscado.getQuantidade()));
-            itens.add(String.valueOf(itembuscado.getValor()));
-        }
-
-        dados_itens = itens.toArray(new String[0]);
-
-        recyclerviewmanager = new LinearLayoutManager(context);
-        listaitens.setLayoutManager(recyclerviewmanager);
-        recyclerviewadapter = new RecyclerViewAdapter(context, dados_itens);
-        listaitens.setAdapter(recyclerviewadapter);
+//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.recyclerview_itens2, lista,
+//                new String[]{"_id", "nome", "descricao", "valor"},
+//                new int[]{R.id.text_id, R.id.text_nome, R.id.text_descricao, R.id.text_valor}, 0);
+//
+//        listViewProduto.setAdapter(adapter);
+//        recyclerviewmanager = new LinearLayoutManager(context);
+//        listaitens.setLayoutManager(recyclerviewmanager);
+//        recyclerviewadapter = new RecyclerViewAdapter2(context, dados_itens);
+//        listaitens.setAdapter(recyclerviewadapter);
     }
 }

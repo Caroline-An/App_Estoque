@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAO extends SQLiteOpenHelper {
+    SQLiteDatabase db = getWritableDatabase();
 
     public DAO (Context context){
         super (context, "banco", null, 1);
@@ -66,6 +67,11 @@ public class DAO extends SQLiteOpenHelper {
         }
     }
 
+    public boolean delete(){
+        int if_delete = db.delete("produto", null, null);
+
+        return true;
+    }
     public boolean insereUser(Usuario user){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues dados = new ContentValues();
@@ -120,6 +126,24 @@ public class DAO extends SQLiteOpenHelper {
         return lista;
     }
 
+    public Cursor select(){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql_select = "SELECT * FROM produto;";
+        Cursor lista = db.rawQuery(sql_select, null);
+
+        return lista;
+    }
+
+    public Cursor select_all(){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql_select = "SELECT 'id' as '_id', nome, descricao, categoria, quantidade, valor FROM produto;";
+        Cursor lista = db.rawQuery(sql_select, null);
+
+        if (lista != null){
+            lista.moveToFirst();
+        }
+        return lista;
+    }
     public List<Produto> buscaCategoriaProduto(){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT DISTINCT categoria FROM produto ;";
@@ -141,9 +165,9 @@ public class DAO extends SQLiteOpenHelper {
         return produtos;
     }
 
-    public List<Produto> buscaItemProduto(List<Produto> categ){
+    public List<Produto> buscaItemProduto(String categ){
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT * FROM produto WHERE categoria = " + categ +";";
+        String sql = "SELECT * FROM produto WHERE categoria = '" + categ +"';";
 
         Cursor c = db.rawQuery(sql, null);
 
