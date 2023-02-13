@@ -100,9 +100,9 @@
     <Button
         android:id="@+id/botao_cadastrar"
         style="@style/botao"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:text="   CADASTRAR   "
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@color/white"
         android:fontFamily="@font/inknut_antiqua_medium"
         app:layout_constraintTop_toBottomOf="@id/container"
