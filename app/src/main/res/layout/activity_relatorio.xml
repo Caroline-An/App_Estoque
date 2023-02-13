@@ -227,7 +227,7 @@
         android:id="@+id/iconrelatorio"
         style="@style/iconesbotoes"
         android:layout_width="110dp"
-        android:layout_height="90dp"
+        android:layout_height="91dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/livro"
         app:layout_constraintStart_toEndOf="@id/iconnovo"
